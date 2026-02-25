@@ -218,15 +218,13 @@ spawnveq(int mode, const char *path, char *const *argv, char *const *env)
 	return ret;
 }
 
-#if ENABLE_FEATURE_PREFER_APPLETS && NUM_APPLETS > 1
-static intptr_t
+intptr_t
 mingw_spawn_applet(int mode,
 		   char *const *argv,
 		   char *const *envp)
 {
 	return spawnveq(mode, bb_busybox_exec_path, argv, envp);
 }
-#endif
 
 /* Make a copy of an argv array with n extra slots at the start */
 char ** FAST_FUNC

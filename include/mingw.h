@@ -595,6 +595,7 @@ typedef struct {
 int FAST_FUNC parse_interpreter(const char *cmd, interp_t *interp);
 char ** FAST_FUNC grow_argv(char **argv, int n);
 pid_t FAST_FUNC mingw_spawn(char **argv);
+intptr_t mingw_spawn_applet(int mode, char *const *argv, char *const *envp);
 intptr_t FAST_FUNC mingw_spawn_detach(char **argv);
 intptr_t FAST_FUNC mingw_spawn_proc(const char **argv);
 int mingw_execv(const char *cmd, char *const *argv);

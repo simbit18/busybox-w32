@@ -851,9 +851,9 @@ static int do_lstat(int follow, const char *file_name, struct mingw_stat *buf)
 					buf->st_ino = hdata.nFileIndexLow |
 							(((ino_t)hdata.nFileIndexHigh)<<32);
 					buf->st_nlink = hdata.nNumberOfLinks;
-					if ((buf->st_attr & FILE_ATTRIBUTE_DIRECTORY) &&
-							(flag & BB_STAT_COUNT_SUBDIRS)) {
-						buf->st_nlink = count_subdirs(file_name);
+					if (buf->st_attr & FILE_ATTRIBUTE_DIRECTORY) {
+						buf->st_nlink = (flag & BB_STAT_COUNT_SUBDIRS) ?
+											count_subdirs(file_name) : 2;
 					}
 				}
 				buf->st_uid = buf->st_gid = file_owner(fh, buf);

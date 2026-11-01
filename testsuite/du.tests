@@ -1,0 +1,17 @@
+#!/bin/sh
+# Copyright 2026 by Ronald Yorston
+# Licensed under GPLv2, see file LICENSE in this source tree.
+
+. ./testing.sh
+test -f "$bindir/.config" && . "$bindir/.config"
+
+# testing "test name" "script" "expected result" "file input" "stdin"
+
+mkdir du.tempdir || exit 1
+testing "du include duplicated directory only once" \
+	"du du.tempdir du.tempdir" \
+	"0\tdu.tempdir\n" \
+	"" ""
+rmdir du.tempdir 2>/dev/null
+
+exit $FAILCOUNT
